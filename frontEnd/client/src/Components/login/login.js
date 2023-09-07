@@ -1,7 +1,8 @@
 import React, {useState} from "react"
 import "./login.css"
 import axios from "axios"
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
+
 
 const Login = ({ setLoginUser}) => {
 
@@ -22,7 +23,11 @@ const Login = ({ setLoginUser}) => {
 
     const login = () => {
         axios.post("http://localhost:9002/login", user)
-        .then(res=>alert(res.data.message))
+        .then(res => {
+            alert(res.data.message)
+            setLoginUser(res.data.user)
+            history.push("/")
+        })
     }
 
     return (
@@ -32,7 +37,8 @@ const Login = ({ setLoginUser}) => {
             <input type="password" name="password" value={user.password} onChange={handleChange}  placeholder="Enter your Password" ></input>
             <div className="button" onClick={login}>Login</div>
             <div>or</div>
-            <div className="button" onClick={()=>history.push("/register")}>Register</div>
+            <div className="button" Link to="/register">Register</div>
+            <Link to="/register">Home</Link>
         </div>
     )
 }
