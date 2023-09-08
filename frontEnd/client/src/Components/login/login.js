@@ -24,12 +24,22 @@ const Login = ({ setLoginUser}) => {
     const login = () => {
         axios.post("http://localhost:9002/login", user)
         .then(res => {
+            console.log("rrr",res,res.data.message,res.data.message.includes("login"))
             alert(res.data.message)
-            setLoginUser(res.data.user)
-            history.push("/")
+            if(res.data.message.includes("Login")){
+                setLoginUser(res.data.user)
+                history.push("/employeeHome");
+                window.location.reload();
+            }
         })
     }
 
+    const handleRegister = () => {
+           history.push('/register');
+           window.location.reload()
+    }
+
+    
     return (
         <div className="login">
             <h1>Login</h1>
@@ -37,8 +47,9 @@ const Login = ({ setLoginUser}) => {
             <input type="password" name="password" value={user.password} onChange={handleChange}  placeholder="Enter your Password" ></input>
             <div className="button" onClick={login}>Login</div>
             <div>or</div>
-            <div className="button" Link to="/register">Register</div>
-            <Link to="/register">Home</Link>
+            <div className="button"  onClick={handleRegister}>Register</div>
+            
+
         </div>
     )
 }

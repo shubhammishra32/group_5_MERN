@@ -29,11 +29,17 @@ const Register = () => {
             .then( res => {
                 alert(res.data.message)
                 history.push("/login")
+                window.location.reload()
             })
         } else {
             alert("invlid input")
         }
         
+    }
+
+    const handleLogin = () => {
+        history.push('/login');
+        window.location.reload()
     }
 
     return (
@@ -46,7 +52,7 @@ const Register = () => {
             <input type="password" name="reEnterPassword" value={user.reEnterPassword} placeholder="Re-enter Password" onChange={ handleChange }></input>
             <div className="button" onClick={register} >Register</div>
             <div>or</div>
-            <div className="button" onClick={() => history.push("/login")}>Login</div>
+            <div className="button" onClick={handleLogin}>Login</div>
         </div>
     )
 }

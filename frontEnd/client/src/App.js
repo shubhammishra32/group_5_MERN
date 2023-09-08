@@ -4,7 +4,6 @@ import Login from "./Components/login/login"
 import Register from "./Components/register/register"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState } from 'react';
-
 function App() {
 
   const [ user, setLoginUser] = useState({})
@@ -14,15 +13,22 @@ function App() {
         <Switch>
           <Route exact path="/">
             {
-              user && user._id ? <Homepage setLoginUser={setLoginUser} /> : <Login setLoginUser={setLoginUser}/>
+              true || user && user._id ? <Homepage setLoginUser={setLoginUser} /> : <Login setLoginUser={setLoginUser}/>
             }
           </Route>
-          <Route path="/login">
+
+          <Route exact path="/login">
             <Login setLoginUser={setLoginUser}/>
           </Route>
-          <Route path="/register">
+
+          <Route exact path="/register">
             <Register />
           </Route>
+         
+          <Route exact path="/employeeHome">
+            <Homepage />
+          </Route>
+
         </Switch>
       </Router>
     </div>
