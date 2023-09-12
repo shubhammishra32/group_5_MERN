@@ -1,42 +1,107 @@
 import mongoose from "mongoose";
 
-/*
-mongoose.connect("mongodb+srv://pradumn2999:wOIEFwtph9746jkp@cluster0.wwg30ja.mongodb.net/myLoginRegisterDB", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}, () => {
-    console.log("DB connected")
-})
-*/
-
 const userSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    password: String,
-    //formData: {type: mongoose.Types.ObjectId, required: true, ref: "UserFormData"}
+  name: {
+    type: String,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  //formData: {type: mongoose.Types.ObjectId, required: true, ref: "UserFormData"}
 });
 
 const userFormSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        require: true
-    },
-    email: {
-        type: String,
-        require: true
-    },
-    status: {
-        type: String,
-        default: "pending"
-    },
-    //creator: {type: mongoose.Types.ObjectId, required: true, ref: "User"},
-    skills: []
-})
+  name: {
+    type: String,
+    require: true,
+  },
+  email: {
+    type: String,
+    require: true,
+  },
+  position: {
+    type: String,
+    require: true,
+  },
+  experience: {
+    type: String,
+    require: true,
+  },
+  phoneNumber: {
+    type: Number,
+    required: true,
+  },
+  description: {
+    type: String,
+    require: true,
+  },
+  skills: {
+    type: String,
+    require: true,
+  },
+  status: {
+    type: String,
+    default: "pending",
+  },
+  internshipId: {
+    type: String
+  },
+});
 
-export const UserFormModel = new mongoose.model("UserFormData", userFormSchema);
+const internshipSchema = new mongoose.Schema({
+  image: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  descriptions: {
+    type: String,
+    required: true,
+  },
+  duration: {
+    type: String,
+    required: true,
+  },
+  skills: {
+    type: String,
+    required: true,
+  },
+  location: {
+    type: String,
+    required: true,
+  },
+  mentorName: {
+    type: String,
+    required: true,
+  },
+  applied:{
+    type: Array
+  }
+});
 
-export const User = mongoose.model("User", userSchema);
+// { name: "shubham", email: "abc@gmail.com" },
+//     { name: "mishra", email: "abuyc@gmail.com" },
+//     { name: "shubsatyamham", email: "ahnbc@gmail.com" }
 
-export const Mentor = new mongoose.model("MentorDetails", userFormSchema);
+export const UserFormModel = mongoose.model("UserFormData", userFormSchema);
+
+export const User = mongoose.model("users", userSchema);
+
+export const Mentor = mongoose.model("mentorDetails", userSchema);
+
+export const Internship = mongoose.model(
+  "internshipCardDetails",
+  internshipSchema
+);
 
 // module.exports = {UserFormModel, User};

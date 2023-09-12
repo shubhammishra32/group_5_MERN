@@ -1,21 +1,34 @@
 import express from "express";
 import { getAllCandidateDetails, 
         updateCandidateStatus, 
-        loginController, 
-        registerController, 
-        mentorLogin} from "../controller/service.js";
+        mentorLogin,
+        createinternship,
+        getinternship,
+        loginuser,
+        registeruser,
+        userapplyform} from "../controller/service.js";
 
 
 const router = express.Router();
 
-router.get('/mentorlogin', mentorLogin);
+// mentor routes
+
+router.post('/mentorlogin', mentorLogin);
+
+router.post('/createinternship', createinternship)
+
+router.get('/getinternship', getinternship)
 
 router.get('/candidateDetails', getAllCandidateDetails);
 
 router.get('/scandidate/:email/:status', updateCandidateStatus);
 
-router.post('/login', loginController);
+// user routes
 
-router.post('/register', registerController);
+router.post('/login', loginuser);
+
+router.post('/register', registeruser);
+
+router.post('/applyform', userapplyform)
 
 export default router;
