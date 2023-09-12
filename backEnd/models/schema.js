@@ -14,7 +14,28 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  type: {
+    type: String,
+    required: true,
+  }
   //formData: {type: mongoose.Types.ObjectId, required: true, ref: "UserFormData"}
+});
+
+const mentorSchema = new mongoose.Schema({
+  name: {
+    type: String,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  
 });
 
 const userFormSchema = new mongoose.Schema({
@@ -97,7 +118,7 @@ export const UserFormModel = mongoose.model("UserFormData", userFormSchema);
 
 export const User = mongoose.model("users", userSchema);
 
-export const Mentor = mongoose.model("mentorDetails", userSchema);
+export const Mentor = mongoose.model("mentorDetails", mentorSchema);
 
 export const Internship = mongoose.model(
   "internshipCardDetails",

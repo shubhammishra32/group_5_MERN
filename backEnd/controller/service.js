@@ -12,6 +12,7 @@ export const mentorLogin = async (req, res) => {
       res.status(200).json({
         status: "success",
         data: { mentorData },
+        type: "mentor"
       });
     } else {
       res.status(400).json({
@@ -146,6 +147,7 @@ export const loginuser = async (req, res) => {
       res.status(200).json({
         status: "Login Successfull",
         data: { userData },
+        type: "candidate"
       });
     } else {
       res.status(400).json({
@@ -197,13 +199,13 @@ export const registeruser = async (req, res) => {
 
 export const userapplyform = async (req, res) => {
   try {
-    const { internshipId, name, email } = req.body;
+    const { internshipId, name, email, status } = req.body;
    // console.log("insert data", req.body);
     const createData = await UserFormModel.create(req.body);
 
     const updateAppliedUser = await Internship.findOneAndUpdate(
         {_id : internshipId},
-        { $push: { applied: {name, email} } },
+        { $push: { applied: {name, email, status} } },
         { new: true }
       );
       console.log(updateAppliedUser);

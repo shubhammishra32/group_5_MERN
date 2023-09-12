@@ -43,7 +43,7 @@ const Register = () => {
     }
 
     return (
-        <div className="register">
+        <div className="register" style={{marginTop:'146px', marginLeft:'480px'}}>
             {console.log("User", user)}
             <h1>Register</h1>
             <input type="text" name="name" value={user.name} placeholder="Your Name" onChange={ handleChange }></input>
@@ -53,6 +53,8 @@ const Register = () => {
             <div className="button" onClick={register} >Register</div>
             <div>or</div>
             <div className="button" onClick={handleLogin}>Login</div>
+
+
         </div>
     )
 }
