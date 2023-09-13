@@ -154,7 +154,7 @@ export const loginuser = async (req, res) => {
  
     const { email, password } = req.body;
     console.log("login", req.body)
-    const userData = await User.find();
+    const userData = await User.find({email, password});
 
     console.log(userData);
 
