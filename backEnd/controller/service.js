@@ -1,4 +1,5 @@
 import { UserFormModel, User, Mentor, Internship } from "../models/schema.js";
+import bcrypt from "bcryptjs";
 
 export const mentorLogin = async (req, res) => {
   try {
@@ -116,23 +117,23 @@ export const updateCandidateStatus = async (req, res) => {
 
     const { status, email } = newValue;
 
-    const userData = await UserFormModel.findOneAndUpdate(
+    const updatedUserStatus = await UserFormModel.findOneAndUpdate(
       { email, internshipId },
       { status },
       { new: true }
     );
     // console.log(userData)
 
-    const updateInternshipStatus = await Internship.findOneAndUpdate(
+    const updatedInternshipStatus = await Internship.findOneAndUpdate(
       { _id: internshipId, ["applied"]: oldValue },
       { $set: { ["applied"]: newValue } },
       { new: true }
     );
-    console.log("prindata", updateInternshipStatus);
-    if (userData) {
+    //console.log("prindata", updateInternshipStatus);
+    if (updatedUserStatus && updatedInternshipStatus) {
       res.status(200).json({
         status: "Success",
-        data: { userData },
+        data: {  updatedUserStatus, updatedInternshipStatus },
       });
     } else {
       res.status(400).json({
@@ -151,24 +152,34 @@ export const updateCandidateStatus = async (req, res) => {
 
 export const loginuser = async (req, res) => {
   try {
- 
-    const { email, password } = req.body;
-    console.log("login", req.body)
-    const userData = await User.find({email, password});
+    let { email } = req.body;
 
-    console.log(userData);
+    const userData = await User.find({ email }, { _id: 0, __v: 0 });
 
-    if (userData.length > 0) {
-      res.status(200).json({
-        status: "Login Successfull",
-        data: { userData },
-        type: "candidate",
-      });
-    } else {
-      res.status(400).json({
-        status: "user doesn't exist or email and password wrong.",
+    if (userData.length === 0) {
+      return res.status(404).json({
+        message: "User not found",
       });
     }
+    const isPasswordCorrect = bcrypt.compareSync(
+      req.body.password,
+      userData[0].password
+    );
+
+    if (!isPasswordCorrect) {
+      return res.status(400).json({
+        message: "Wrong username or password",
+      });
+    }
+    const UserData = userData[0];
+
+    const { password, ...data } = UserData["_doc"];
+    console.log(data);
+    res.status(200).json({
+      status: "Login Successfull",
+      data: { data },
+      type: "candidate",
+    });
   } catch (err) {
     console.log("Somthing went wrong");
     res.status(404).json({
@@ -180,9 +191,9 @@ export const loginuser = async (req, res) => {
 
 export const registeruser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
 
-    const userrData = await User.find({ email, password });
+    const userrData = await User.find({ email });
 
     console.log(userrData, userrData.length);
 
@@ -194,8 +205,9 @@ export const registeruser = async (req, res) => {
         },
       });
     } else {
-      // console.log("insert data", req.body)
-      const createData = await User.create(req.body);
+      const salt = bcrypt.genSaltSync(10);
+      const hash = bcrypt.hashSync(password, salt);
+      const createData = await User.create({ name, email, password: hash });
       res.status(200).json({
         status: "success",
         data: {
@@ -204,7 +216,7 @@ export const registeruser = async (req, res) => {
       });
     }
   } catch (err) {
-    console.log("Somthing went wrong");
+    console.log(err);
     res.status(404).json({
       status: "Somthing went wrong",
       message: err,

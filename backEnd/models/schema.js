@@ -13,12 +13,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-  },
-  type: {
-    type: String,
-    required: true,
   }
-  //formData: {type: mongoose.Types.ObjectId, required: true, ref: "UserFormData"}
 });
 
 const mentorSchema = new mongoose.Schema({

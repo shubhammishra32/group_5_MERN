@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 
 import router from "./routes/route.js";
+import requestLogger from "./middleware/requestLogger.js";
 
 mongoose.connect("mongodb+srv://pradumn2999:wOIEFwtph9746jkp@cluster0.wwg30ja.mongodb.net/myLoginRegisterDB", {
     useNewUrlParser: true,
@@ -21,7 +22,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "x-access-token, Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
-
+  app.use(requestLogger);
 app.use('/', router);
 
 app.listen(9002,() => {
