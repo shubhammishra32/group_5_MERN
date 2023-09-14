@@ -125,23 +125,21 @@ export const updateCandidateStatus = async (req, res) => {
     logger.debug("Start of the get updateCandidateStatus");
 
     const { internshipId } = req.params;
-    const { oldValue, newValue } = req.body;
 
-    const { status, email } = newValue;
+    const { status, email } = req.body;
 
     const updatedUserStatus = await UserFormModel.findOneAndUpdate(
       { email, internshipId },
       { status },
       { new: true }
     );
-    // console.log(userData)
 
     const updatedInternshipStatus = await Internship.findOneAndUpdate(
-      { _id: internshipId, ["applied"]: oldValue },
-      { $set: { ["applied"]: newValue } },
+      { _id: internshipId, applied: { $elemMatch: { email } } },
+      { $set: { "applied.$.status": status } },
       { new: true }
     );
-    //console.log("prindata", updateInternshipStatus);
+    logger.debug(`updateInternshipStatus ${updatedInternshipStatus}`);
     if (updatedUserStatus && updatedInternshipStatus) {
       logger.info("Updated successfuly user and internship status");
       res.status(200).json({
@@ -255,7 +253,7 @@ export const userapplyform = async (req, res) => {
     logger.debug("Start of the user applyform");
 
     const { internshipId, name, email, status } = req.body;
-    // console.log("insert data", req.body);
+
     const createData = await UserFormModel.create(req.body);
 
     const updateAppliedUser = await Internship.findOneAndUpdate(
@@ -321,9 +319,9 @@ export const deleteInternship = async (req, res) => {
 };
 
 export const invalid = async (req, res) => {
-  logger.error('Invalid path')
+  logger.error("Invalid path");
   res.status(404).json({
-    status: 'fail',
-    message: 'Invalid path',
+    status: "fail",
+    message: "Invalid path",
   });
 };
