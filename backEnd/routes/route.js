@@ -9,6 +9,7 @@ import {
   userapplyform,
   getCandidateDetails,
   deleteInternship,
+  invalid,
 } from "../controller/service.js";
 
 import { logger } from "../config/logger.js";
@@ -41,5 +42,9 @@ router.post("/login", loginuser); //done
 router.post("/register", registeruser); //done
 
 router.post("/applyform", userapplyform); //done
+
+//invalid path
+
+router.all('*', invalid);
 
 export default router;

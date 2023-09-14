@@ -76,3 +76,31 @@ Sep-14-2023 12:58:21 [[32minfo[39m]: Server is running on port 9002
 Sep-14-2023 12:58:24 [[32minfo[39m]: DB connected
 Sep-14-2023 13:00:59 [[32minfo[39m]: DELETE /deleteinternship/6502b51355b6b5f76e4871aa
 Sep-14-2023 13:00:59 [[34mdebug[39m]: Start of the deleteOne
+Sep-14-2023 15:23:55 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 15:23:55 [[32minfo[39m]: DB connected
+Sep-14-2023 15:24:07 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 15:24:07 [[32minfo[39m]: DB connected
+Sep-14-2023 15:24:30 [[32minfo[39m]: Server is running on port 9005
+Sep-14-2023 15:24:30 [[32minfo[39m]: DB connected
+Sep-14-2023 15:24:51 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 15:24:51 [[32minfo[39m]: DB connected
+Sep-14-2023 15:31:17 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 15:31:17 [[32minfo[39m]: DB connected
+Sep-14-2023 15:32:41 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 15:32:41 [[32minfo[39m]: DB connected
+Sep-14-2023 15:35:05 [[32minfo[39m]: POST /mentorlogin
+Sep-14-2023 15:35:05 [[34mdebug[39m]: Start of the mentor login
+Sep-14-2023 15:35:52 [[32minfo[39m]: POST /mentorlogin
+Sep-14-2023 15:35:52 [[34mdebug[39m]: Start of the mentor login
+Sep-14-2023 15:36:34 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 15:36:41 [[32minfo[39m]: DB connected
+Sep-14-2023 15:36:51 [[32minfo[39m]: POST /mentorlogin
+Sep-14-2023 15:36:51 [[34mdebug[39m]: Start of the mentor login
+Sep-14-2023 15:36:51 [[32minfo[39m]: response {
+  _id: new ObjectId("650042e7369339cbb7d3a116"),
+  name: 'Prem',
+  email: 'prem@infosys.com',
+  password: 'prem'
+}
+Sep-14-2023 16:27:50 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 16:27:50 [[32minfo[39m]: DB connected

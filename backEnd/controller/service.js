@@ -319,3 +319,11 @@ export const deleteInternship = async (req, res) => {
     });
   }
 };
+
+export const invalid = async (req, res) => {
+  logger.error('Invalid path')
+  res.status(404).json({
+    status: 'fail',
+    message: 'Invalid path',
+  });
+};
