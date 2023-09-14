@@ -1,0 +1,78 @@
+Sep-14-2023 12:18:17 [[32minfo[39m]: POST /mentorlogin
+Sep-14-2023 12:18:17 [[34mdebug[39m]: Start of the mentor login
+Sep-14-2023 12:18:17 [[32minfo[39m]: response {
+  _id: new ObjectId("65003fb1369339cbb7d3a112"),
+  name: 'Satyam',
+  email: 'satyam@infosys.com',
+  password: 'satyam'
+}
+Sep-14-2023 12:31:57 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:31:57 [[32minfo[39m]: DB connected
+Sep-14-2023 12:32:31 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:32:31 [[32minfo[39m]: DB connected
+Sep-14-2023 12:34:30 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:34:30 [[32minfo[39m]: DB connected
+Sep-14-2023 12:34:42 [[32minfo[39m]: DELETE /deleteinternship/650032e1a1a4fe00d951c008
+Sep-14-2023 12:36:05 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:36:05 [[32minfo[39m]: DB connected
+Sep-14-2023 12:37:38 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:37:38 [[32minfo[39m]: DB connected
+Sep-14-2023 12:37:48 [[32minfo[39m]: DELETE /deleteinternship/650032e1a1a4fe00d951c008
+Sep-14-2023 12:39:31 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:39:31 [[32minfo[39m]: DB connected
+Sep-14-2023 12:39:46 [[32minfo[39m]: DELETE /deleteinternship/650032e1a1a4fe00d951c008
+Sep-14-2023 12:39:46 [[34mdebug[39m]: Start of the deleteOne
+Sep-14-2023 12:41:29 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:41:30 [[32minfo[39m]: DB connected
+Sep-14-2023 12:41:37 [[32minfo[39m]: DELETE /deleteinternship/650032e1a1a4fe00d951c008
+Sep-14-2023 12:43:07 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:43:10 [[32minfo[39m]: DB connected
+Sep-14-2023 12:43:24 [[32minfo[39m]: DELETE /deleteinternship/650032e1a1a4fe00d951c008
+Sep-14-2023 12:44:11 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:44:14 [[32minfo[39m]: DB connected
+Sep-14-2023 12:44:18 [[32minfo[39m]: DELETE /deleteinternship/650032e1a1a4fe00d951c008
+Sep-14-2023 12:45:28 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:45:32 [[32minfo[39m]: DB connected
+Sep-14-2023 12:45:40 [[32minfo[39m]: DELETE /deleteinternship/650032e1a1a4fe00d951c008
+Sep-14-2023 12:45:40 [[34mdebug[39m]: Start of the deleteOne
+Sep-14-2023 12:46:43 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:46:50 [[32minfo[39m]: DB connected
+Sep-14-2023 12:47:56 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:48:00 [[32minfo[39m]: DB connected
+Sep-14-2023 12:53:42 [[32minfo[39m]: GET /createinternship
+Sep-14-2023 12:54:03 [[32minfo[39m]: POST /createinternship
+Sep-14-2023 12:54:03 [[34mdebug[39m]: Start of the create internship
+Sep-14-2023 12:54:03 [[32minfo[39m]: response {
+  image: 'https://static.javatpoint.com/blog/images/mern-stack.png',
+  title: 'MERN infy',
+  descriptions: 'Desc infy',
+  duration: '2',
+  skills: 'react',
+  location: 'Pune IN',
+  mentorName: 'Prem',
+  applied: [
+    {
+      name: 'Shubham32',
+      email: 'shubham32@gmail.com',
+      status: 'Rejected'
+    }
+  ],
+  _id: new ObjectId("6502b51355b6b5f76e4871aa"),
+  __v: 0
+}
+Sep-14-2023 12:54:46 [[32minfo[39m]: DELETE /deleteinternship/6502b51355b6b5f76e4871aa
+Sep-14-2023 12:54:46 [[34mdebug[39m]: Start of the deleteOne
+Sep-14-2023 12:56:38 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:56:40 [[32minfo[39m]: DELETE /deleteinternship/6502b51355b6b5f76e4871aa
+Sep-14-2023 12:56:40 [[34mdebug[39m]: Start of the deleteOne
+Sep-14-2023 12:56:42 [[32minfo[39m]: DB connected
+Sep-14-2023 12:56:42 [[34mdebug[39m]: Internship not available
+Sep-14-2023 12:57:06 [[32minfo[39m]: DELETE /deleteinternship/6502b51355b6b5f76e4871aa
+Sep-14-2023 12:57:06 [[34mdebug[39m]: Start of the deleteOne
+Sep-14-2023 12:57:06 [[34mdebug[39m]: Internship not available
+Sep-14-2023 12:58:10 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:58:15 [[32minfo[39m]: DB connected
+Sep-14-2023 12:58:21 [[32minfo[39m]: Server is running on port 9002
+Sep-14-2023 12:58:24 [[32minfo[39m]: DB connected
+Sep-14-2023 13:00:59 [[32minfo[39m]: DELETE /deleteinternship/6502b51355b6b5f76e4871aa
+Sep-14-2023 13:00:59 [[34mdebug[39m]: Start of the deleteOne
