@@ -197,9 +197,9 @@ export const registeruser = async (req, res) => {
 
 export const userapplyform = async (req, res) => {
   try {
-    const { internshipId, name, email } = req.body;
-   // console.log("insert data", req.body);
-    const createData = await UserFormModel.create(req.body);
+  //   const { internshipId, name, email } = req.body;
+  //  // console.log("insert data", req.body);
+  //   const createData = await UserFormModel.create(req.body);
 
     const updateAppliedUser = await Internship.findOneAndUpdate(
         {_id : internshipId},
