@@ -1,16 +1,16 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import "./login.css"
 import axios from "axios"
 import { useHistory, Link } from "react-router-dom"
 
 
-const Login = ({ setLoginUser}) => {
+const Login = () => {
 
     const history = useHistory()
 
-    const [ user, setUser] = useState({
-        email:"",
-        password:""
+    const [user, setUser] = useState({
+        email: "",
+        password: ""
     })
 
     const handleChange = e => {
@@ -21,56 +21,68 @@ const Login = ({ setLoginUser}) => {
         })
     }
 
-    const login = () => {
-        axios.post("http://localhost:9002/login", user)
-        .then(res => {
-            console.log("rrr",res,res.data.data.userData[0])
-            alert(res.data.status)
-            if(res.data.status?.includes("Login")){
-                setLoginUser(res.data.user)
-                 localStorage.setItem('user', JSON.stringify({...res.data.data.userData[0], type:res.data.type}))
 
-                history.push("/candidateHomePage");
-               // window.location.reload();
+
+
+    const login = () => {
+        if (!user.email.length || !user.password) {
+            alert("Please fill all fields first")
+        }
+        else {
+            if(user?.email?.includes("@infosys")){
+                alert("Invalid Credentials")
             }
-        })
+            else{
+            axios.post("http://localhost:9002/login", user)
+                .then(res => {
+                    alert(res.data.status)
+                    if (res.data.status?.includes("Login")) {
+                        localStorage.setItem('user', JSON.stringify({ ...res.data.data.data, type: res.data.type }))
+
+                        history.push("/candidateHomePage");
+                        window.location.reload();
+                    }
+                    else{
+                        alert("invalid credentials")
+                    }
+                })
+            }
+        }
     }
 
     const mentorlogin = () => {
-        console.log("ooo",user)
+        if (!user.email.length || !user.password) {
+            alert("Please fill all fields first")
+        }
+        else {
         axios.post("http://localhost:9002/mentorlogin", user)
-        .then(res => {
-            console.log("rrr",res,res.data.data.mentorData[0])
-            alert(res.data.status)
-            if(res.data.status?.includes("success")){
-                setLoginUser(res.data.user)
-                 localStorage.setItem('user', JSON.stringify({...res.data.data.mentorData[0], type:res.data.type}))
-
-                history.push("/mentorHomePage");
-                window.location.reload();
-            }
-        })
+            .then(res => {
+                alert("Logged in Successfully")
+                if (res.data.status?.includes("success")) {
+                    localStorage.setItem('user', JSON.stringify({ ...res.data.data.mentorData[0], type: res.data.type }))
+                    history.push("/mentorHomePage");
+                    window.location.reload();
+                }
+            })
+        }
     }
 
     const handleRegister = () => {
-           history.push('/register');
-           window.location.reload()
+        history.push('/register');
+        window.location.reload()
     }
 
-    
+
     return (
-        <div className="login" style={{marginTop:'146px', marginLeft:'480px'}}>
+        <form className="register" style={{ marginTop: '146px', marginLeft: '480px' }}>
             <h1>Login</h1>
-            <input type="text" name="email" value={user.email} onChange={handleChange} placeholder="Enter your Email"></input>
-            <input type="password" name="password" value={user.password} onChange={handleChange}  placeholder="Enter your Password" ></input>
-            <div className="button" onClick={login}>Login</div>
+            <input required type="text" name="email" value={user.email} onChange={handleChange} placeholder="Enter your Email" />
+            <input type="password" name="password" value={user.password} onChange={handleChange} placeholder="Enter your Password" />
+            <div className="button" onClick={login}>Login as Candidate</div>
+            <div className="button" onClick={mentorlogin}>Log in as Mentor</div>
             <div>or</div>
-            <div className="button"  onClick={handleRegister}>Register</div>
-            <div className="button"  onClick={mentorlogin}>Log in as Mentor</div>
-
-            
-
-        </div>
+            <div className="button" onClick={handleRegister}>Register</div>
+        </form>
     )
 }
 

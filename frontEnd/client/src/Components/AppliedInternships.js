@@ -6,7 +6,7 @@ import { Redirect, useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 
 
-export default function CandidateHomePage() {
+export default function AppliedInternships() {
 
     const history = useHistory();
 
@@ -159,11 +159,11 @@ export default function CandidateHomePage() {
 
 
 
-            {!showForm && <div className="container text-center">
+            {true && <div className="container text-center">
                 <div className="row" style={{ marginTop: "66px" }}>
-                    <h4>List of available Internships</h4>
+                    <h4>List of Applied Internships</h4>
                     {
-                        internData?.filter(q=>q.title?.toLowerCase()?.includes(searchText?.toLowerCase()))?.map(e => {
+                        appliedI?.filter(q=>q.title?.toLowerCase()?.includes(searchText?.toLowerCase()))?.map(e => {
                             return (
                                 <div className="col" style={{ backgroundColor: 'ghostwhite', paddingTop: '20px' }}>
                                     <div className="card" style={{ width: '18rem', marginBottom: '34px' }}>
@@ -201,13 +201,11 @@ export default function CandidateHomePage() {
                         Close
                     </Button>
                     {
-                        modalData.disabled && <Button variant="primary" disabled={true} >
-                           Already Applied
+                        modalData.disabled && <Button variant="primary" disabled={true} style={{backgroundColor:'grey'}}>
+                           Applied
                         </Button>
                     }
-                    {!modalData.disabled && <Button variant="primary" onClick={handleApply}>
-                        Apply
-                    </Button>}
+                   
                 </Modal.Footer>
             </Modal>}
 

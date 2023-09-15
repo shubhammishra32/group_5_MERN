@@ -2,39 +2,51 @@ import './App.css'
 import Login from "./Components/login/login"
 import Register from "./Components/register/register"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CandidateHomePage from "./Components/CandidateHomePage";
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import NavBarComponent from "./Components/NavBarComponent";
 import MentorHomePage from './Components/MentorHomePage';
 import InternShipDetails from './Components/InternShipDetails';
-import ListOfAppliedIntenships from './Components/ListOfAppliedIntenships';
 import ListOfAppliedCandidates from './Components/ListOfAppliedCandidates';
+import store from './store';
+import { Provider } from 'react-redux';
+import AppliedInternships from './Components/AppliedInternships';
 
-function App() {
+function App() { 
 
   const [ user, setLoginUser] = useState({})
+  const [arr, setarr] = useState([]);
+
+  useEffect(()=>{
+    let u = localStorage.getItem('user');
+    let employee = JSON.parse(u)
+    arr.push(employee);  
+    if(arr.length <2)
+    setLoginUser(employee)
+  })
+
   return (
-    <div className="App">
+    <Provider store={store}> 
+    <div className="App" style={{backgroundColor:'ghostwhite'}}>
       <NavBarComponent/>
-      {console.log("lll",user)}
       <Router>
         <Switch>
           <Route exact path="/">
             {
               user && user._id  && user?.type == "candidate" ? 
-                <CandidateHomePage setLoginUser={setLoginUser} /> 
+                <CandidateHomePage  /> 
                   : 
                 user?.type == "mentor" ?
-                <MentorHomePage setLoginUser={setLoginUser} /> 
+                <MentorHomePage /> 
                   :
-                <Login setLoginUser={setLoginUser}/>
+                <Login />
             }
           </Route>
 
           <Route exact path="/login">
-            <Login setLoginUser={setLoginUser}/>
+            <Login />
           </Route>
 
           <Route exact path="/register">
@@ -55,11 +67,16 @@ function App() {
 
           <Route exact path="/list">
             <ListOfAppliedCandidates/>
+          </Route> 
+
+          <Route exact path="/appliedInternships">
+            <AppliedInternships/>
           </Route>          
 
         </Switch>
       </Router>
     </div>
+    </Provider>
   );
 }
 

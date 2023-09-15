@@ -216,7 +216,6 @@ export const registeruser = async (req, res) => {
 
     const userrData = await User.find({ email });
 
-    console.log(userrData, userrData.length);
 
     if (userrData.length > 0) {
       logger.debug("User already registerd");
