@@ -21,7 +21,7 @@ function App() {
 
   useEffect(()=>{
     let u = localStorage.getItem('user');
-    let employee = JSON.parse(u)
+    let employee = JSON.parse(u);
     arr.push(employee);  
     if(arr.length <2)
     setLoginUser(employee)
